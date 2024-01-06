@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Feedbacks
+      Course Request
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Feedbacks</ion-title>
+      <ion-title size="large">Course Request</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -22,13 +22,16 @@
       <ion-thumbnail slot="start">
         <img [src]=item.image>
         </ion-thumbnail>
-      
       <ion-label>
         <h2>{{item.coursename}}</h2>
         <p>Total duration is {{ item.duration }} hours</p>
 
       </ion-label>
-      <ion-icon slot="end" name="cart"></ion-icon>
+      <ion-buttons slot="end">
+        <ion-button color="primary" [routerLink]="['/course-request',item.coursename]">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+        </ion-buttons> 
     </ion-item>
   </ion-list>
 </ion-content>
