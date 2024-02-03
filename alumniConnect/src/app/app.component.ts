@@ -8,6 +8,7 @@ import firebase from 'firebase';
 })
 export class AppComponent {
   constructor() {
+    
     const firebaseConfig = {
       apiKey: "AIzaSyBGvO4LU7ww6qRXme1GdxgkpeKOj5uTIP4",
       authDomain: "alumniconnect-jj.firebaseapp.com",
