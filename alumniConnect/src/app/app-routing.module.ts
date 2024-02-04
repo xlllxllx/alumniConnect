@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'course-request/:coursename',
     
     loadChildren: () => import('./course-request/course-request.module').then( m => m.CourseRequestPageModule)
+  },
+  {
+    path: 'add-question',
+    loadChildren: () => import('./add-question/add-question.module').then( m => m.AddQuestionPageModule)
   }
 ];
 @NgModule({
