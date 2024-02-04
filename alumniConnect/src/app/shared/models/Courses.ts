@@ -1,18 +1,30 @@
 
 
 export class Courses {
-    coursename: string;
-    duration: number;
+    title: string;
+    subtitle: string;
+    duration: string;
+    weeklyHours: string;
+    programDateFrom: string;
+    programDateTo: string;
+    about: string;
+    instructors: string;
     image: string;
-    id: string;
     imagePath!: string;
+    id: string;
     
 
-    constructor(coursename: string, duration: number, image?: string, id?: string) {
-        this.coursename = coursename;
+    constructor(title: string, subtitle: string, duration: string, weeklyHours: string, programDateFrom: string, programDateTo: string, about: string, instructors: string, image: string, id: string) {
+        this.title = title;
+        this.subtitle = subtitle;
         this.duration = duration;
-        this.image = image!;
-        this.id = id!;
+        this.weeklyHours = weeklyHours;
+        this.programDateFrom = programDateFrom;
+        this.programDateTo = programDateTo;
+        this.about = about;
+        this.instructors = instructors;
+        this.image = image;
+        this.id = id;
     }
 }
 

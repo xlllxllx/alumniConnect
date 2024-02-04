@@ -10,13 +10,13 @@ export class AppComponent {
   constructor() {
     
     const firebaseConfig = {
-      apiKey: "AIzaSyBGvO4LU7ww6qRXme1GdxgkpeKOj5uTIP4",
-      authDomain: "alumniconnect-jj.firebaseapp.com",
-      projectId: "alumniconnect-jj",
-      storageBucket: "alumniconnect-jj.appspot.com",
-      messagingSenderId: "337019866190",
-      appId: "1:337019866190:web:4f5a652337eed9aad4871f",
-      measurementId: "G-KPCF6C16NB"
+      apiKey: "AIzaSyD2J7uXWrBELnG05_7NwIbsLcVhXSZeVxI",
+      authDomain: "project-3f9b9.firebaseapp.com",
+      projectId: "project-3f9b9",
+      storageBucket: "project-3f9b9.appspot.com",
+      messagingSenderId: "13098713050",
+      appId: "1:13098713050:web:b5a24e69fc31e942fa0ae3",
+      measurementId: "G-W31F8W6C9B"
     };
     firebase.initializeApp(firebaseConfig);
   }

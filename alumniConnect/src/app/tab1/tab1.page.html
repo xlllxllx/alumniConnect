@@ -23,12 +23,14 @@
         <img [src]=item.image>
         </ion-thumbnail>
       <ion-label>
-        <h2>{{item.coursename}}</h2>
+        <h2>{{item.title}}</h2>
+        <p>{{item.subtitle}}</p>
         <p>Total duration is {{item.duration}} hours</p>
+        
 
       </ion-label>
       <ion-buttons slot="end">
-        <ion-button color="primary" [routerLink]="['/course-request',item.coursename]">
+        <ion-button color="primary" [routerLink]="['/course-request',item.title]">
         <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
         </ion-button>
         </ion-buttons> 

@@ -13,7 +13,7 @@ export class FirebaseProductService {
     return new Observable((observer) => {
     this.productsRef.doc(id).get().then((doc) => {
     let data = doc.data();
-    let c = new Courses(data!['coursename'], data!['duration'], data!['image'],doc['id']);
+    let c = new Courses(data!['title'], data!['subtitle'], data!['duration'], data!['weeklyHours'], data!['programDateFrom'], data!['programDateTo'], data!['about'], data!['instructor'], data!['image'], doc['id']);
     // let data = doc.data();
     // let p = new Courses(data['coursename'], data['duration'],doc['id']);
     if (data!['image']) {
@@ -41,7 +41,7 @@ export class FirebaseProductService {
     let course: Courses[] = [];
     querySnapshot.forEach((doc) => {
     let data = doc.data();
-    let c = new Courses(data!['coursename'], data!['duration'],data['image'],doc['id']);
+    let c = new Courses(data['title'], data['subtitle'], data['duration'], data['weeklyHours'], data['programDateFrom'], data['programDateTo'], data['about'], data['instructor'], data['image'], doc['id']);
     if (data!['image']) {
       c.imagePath = data!['image'];
       const imageRef = firebase.storage().ref().child(data!['image']);
