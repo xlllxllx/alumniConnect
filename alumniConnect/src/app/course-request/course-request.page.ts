@@ -12,6 +12,7 @@ export class CourseRequestPage implements OnInit {
     
     constructor(private route: ActivatedRoute) { 
       this.courseId = this.route.snapshot.params['coursename'];
+
     }
     
     ngOnInit() {
