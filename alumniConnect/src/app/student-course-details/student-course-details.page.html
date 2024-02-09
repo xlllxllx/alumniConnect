@@ -1,0 +1,82 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{this.course?.title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" [routerLink]="['/tabs/student-course']">
+        <ion-icon slot="icon-only" name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <img [src]=courseImage alt="" class="image-card">
+
+  <ion-item>
+    <ion-label color="medium">{{courseId}}</ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Title</h3>
+      <p>{{this.course?.title}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Subtitle</h3>
+      <p>{{this.course?.subtitle}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Duration</h3>
+      <p>{{this.course?.duration}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Weekly Hours</h3>
+      <p>{{this.course?.weeklyHours}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Program Date From</h3>
+      <p>{{this.course?.programDateFrom}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Program Date To</h3>
+      <p>{{this.course?.programDateTo}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>About</h3>
+      <p>{{this.course?.about}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      <h3>Instructors</h3>
+      <p>{{this.course?.instructors}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-toolbar>
+    <ion-button size="small" (click)=enroll() [routerLink]="['/tabs/student-course']" class="enroll-button">
+      Enroll
+    </ion-button>
+  </ion-toolbar>
+
+</ion-content>
