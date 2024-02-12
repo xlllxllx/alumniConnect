@@ -14,7 +14,20 @@ const routes: Routes = [
   {
     path: 'add-question',
     loadChildren: () => import('./add-question/add-question.module').then( m => m.AddQuestionPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
   }
+
 ];
 @NgModule({
   imports: [

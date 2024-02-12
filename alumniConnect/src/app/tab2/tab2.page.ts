@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Jobs } from '../shared/models/Jobs';
+import { ModalController } from '@ionic/angular';
+import { AuthService } from '../shared/services/auth.service';
+import { LoginPage } from '../login/login.page';
 
 @Component({
   selector: 'app-tab2',
@@ -7,9 +10,11 @@ import { Jobs } from '../shared/models/Jobs';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  userEmail: any;
   jobs: Jobs[] = [];
   
-  constructor() {
+  constructor(private modalController: ModalController,
+              private authService: AuthService) {
     this.jobs = [
       new Jobs('Software Engineer', 50000, 'Develops software solutions by studying information needs; conferring with users; studying systems flow, data usage, and work processes.', 'assets/images/jobs0.jpeg', '1'),
       new Jobs('Data Scientist', 60000, 'A data scientist is someone who makes value out of data. By fetching information from various sources and analyzes it for better understanding about how the business performs.', 'assets/images/jobs1.jpeg', '2'),
@@ -23,6 +28,23 @@ export class Tab2Page {
       new Jobs('Product Manager', 80000, 'A product manager is a professional role that is responsible for the development of products for an organization, known as the practice of product management.', 'assets/images/prodmanager.jpeg', '10'),
     ];
 
+    this.authService.observeAuthState(user => {
+      if (user) {
+        this.userEmail = user.email;
+      } else {
+        this.userEmail = undefined;
+      }
+    });
+  }
+  async login() {
+    const modal = await this.modalController.create({
+      component: LoginPage
+    });
+    return await modal.present();
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

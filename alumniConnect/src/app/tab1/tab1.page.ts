@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Courses } from '../shared/models/Courses';
 import { FirebaseProductService } from '../shared/services/firebase-product.service';
 import { CoursesService } from '../shared/services/courses.service';
+import { LoginPage } from '../login/login.page';
+import { ModalController } from '@ionic/angular';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -9,8 +12,11 @@ import { CoursesService } from '../shared/services/courses.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-courses: Courses[] = [];
-  constructor(private coursesService: FirebaseProductService) {
+  userEmail: any;
+  courses: Courses[] = [];
+  constructor(private coursesService: FirebaseProductService,
+              private modalController: ModalController,
+              private authService: AuthService) {
     
     // this.courses = this.coursesService.getCourses();
     this.coursesService.getCourses()
@@ -32,6 +38,23 @@ courses: Courses[] = [];
     //   new Courses('M.Com', 2, 'assets/images/course1.jpeg', '10'),
 
     // ];
-   
+      this.authService.observeAuthState(user => {
+        if (user) {
+          this.userEmail = user.email;
+        } else {
+          this.userEmail = undefined;
+        }
+      });
+    }
+
+    async login() {
+      const modal = await this.modalController.create({
+        component: LoginPage
+      });
+      return await modal.present();
+    }
+
+    logout() {
+      this.authService.logout();
     }
 }

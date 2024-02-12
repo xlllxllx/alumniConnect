@@ -3,6 +3,15 @@
     <ion-title>
       Course Feedback
     </ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="userEmail === undefined">
+        <ion-button (click)="login()" type="submit">Login</ion-button>
+      </div>
+      <div *ngIf="userEmail !== undefined">
+        <ion-button (click)="login()" type="submit">{{userEmail}}</ion-button>
+        <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
