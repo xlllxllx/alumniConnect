@@ -1,17 +1,47 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Course Feedback
     </ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="userEmail === undefined">
+        <ion-button (click)="login()" type="submit">Login</ion-button>
+      </div>
+      <div *ngIf="userEmail !== undefined">
+        <ion-button (click)="login()" type="submit">{{userEmail}}</ion-button>
+        <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Course Feedback</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div id ="container">
+    <strong>There are no products</strong>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let item of question">
+      
+      <ion-label>
+        
+        <h1>{{item.question}}</h1>
+        <h2>{{item.category}}</h2>
+        <p>{{item.description}}</p>
+        <p>Total score is {{item.score}}</p>
+  
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary" [routerLink]="['/add-question']">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+        </ion-button>
+        </ion-buttons> 
+    </ion-item>
+  </ion-list>
 </ion-content>
+
