@@ -29,6 +29,30 @@ const routes: Routes = [
   {
     path: 'student-course-details/:id',
     loadChildren: () => import('./student-course-details/student-course-details.module').then( m => m.StudentCourseDetailsPageModule)
+  },
+  {
+    path: 'admin-activity',
+    loadChildren: () => import('./admin-activity/admin-activity.module').then( m => m.AdminActivityPageModule)
+  },
+  {
+    path: 'student-activity',
+    loadChildren: () => import('./student-activity/student-activity.module').then( m => m.StudentActivityPageModule)
+  },
+  {
+    path: 'add-activity',
+    loadChildren: () => import('./add-activity/add-activity.module').then( m => m.AddActivityPageModule)
+  },
+  {
+    path: 'admin-activity-result',
+    loadChildren: () => import('./admin-activity-result/admin-activity-result.module').then( m => m.AdminActivityResultPageModule)
+  },
+  {
+    path: 'student-activity-result',
+    loadChildren: () => import('./student-activity-result/student-activity-result.module').then( m => m.StudentActivityResultPageModule)
+  },
+  {
+    path: 'admin-activity-result',
+    loadChildren: () => import('./admin-activity-result/admin-activity-result.module').then( m => m.AdminActivityResultPageModule)
   }
 ];
 @NgModule({
