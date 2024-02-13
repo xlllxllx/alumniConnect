@@ -1,6 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Account</ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="user === undefined">
+        <ion-button (click)="login()" type="submit">Login</ion-button>
+      </div>
+      <div *ngIf="user">
+        <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +18,7 @@
       <ion-title size="large">Profile</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div *ngIf="userEmail === undefined">
+  <div *ngIf="user === undefined">
     <ion-item>
       You are not logged in
       </ion-item>
@@ -20,28 +28,40 @@
      </ion-button>
      <ion-button expand="block" color="secondary" fill="clear" (click)="signup()">Or Create an Account</ion-button>
   </div>
-  <div *ngIf="userEmail !== undefined">
+  <div *ngIf="user">
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+          <img src="../../assets/icon/avatar.jpeg" alt="avatar">
+        </div>
+      </div>
+    </div> 
     <form [formGroup]="userProfileForm">
-      <ion-item>
-        <ion-label>Username</ion-label>
-        <ion-input formControlName="username"></ion-input>
-        <ion-label *ngIf="userProfileForm.controls['username'].errors && updated" color="danger">Username is required</ion-label>
-      </ion-item>
+      <div class="card-body">
+        <div class="user-meta ion-text-center">
+          <h3 class="name">{{userName}}</h3>
+        </div>
+      </div>
 
       <ion-item>
         <ion-label>Contact</ion-label>
-        <ion-input type="number" formControlName="contact"></ion-input>
+        <ion-text>{{user.contact}}</ion-text>
       </ion-item>
 
       <ion-item>
         <ion-label>Email</ion-label>
-        <ion-input type="email" formControlName="email" readonly></ion-input>
+        <ion-text>{{user.email}}</ion-text>
       </ion-item>
       <ion-item>
         <ion-label>Currenly Employed</ion-label>
-        <ion-toggle formControlName="employment"></ion-toggle>
+        <div *ngIf="user.employment">
+          <ion-text>Yes</ion-text>
+        </div>
+        <div *ngIf="!user.employment">
+          <ion-text>No</ion-text>
+        </div>
       </ion-item>
     </form>
-    <ion-button expand="block" color="secondary"(click)="logout()">Logout</ion-button>
+    <ion-button expand="block" color="secondary" [routerLink]="['/edit-profile']">Edit</ion-button>
   </div>
 </ion-content>

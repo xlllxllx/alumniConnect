@@ -11,10 +11,10 @@ export class TabsPage {
   isStudent = false;
   constructor(private authService: AuthService) {
     this.authService.observeAuthState(user => {
-      if(user && user.email == 'admin@nyp.sg') {
+      if(user && user.email == 'admin1@nyp.sg') {
         this.isAdmin = true;
         this.isStudent = false;
-      } else if (user && user.email != 'admin@nyp.sg'){
+      } else if (user && user.email != 'admin1@nyp.sg'){
         this.isAdmin = false;
         this.isStudent = true;
       } else {

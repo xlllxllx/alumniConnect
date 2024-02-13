@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-button color="dark" [routerLink]="['/account']">
+        <ion-icon slot="icon-only" name="chevron-back-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Edit Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="card">
+    <div class="header">
+      <div class="avatar">
+        <img src="../../assets/icon/avatar.jpeg" alt="avatar">
+      </div>
+    </div>
+  </div> 
+  <form [formGroup]="userProfileForm">
+    <div class="card-body">
+      <div class="user-meta ion-text-center">
+        <h3 class="name">{{userName}}</h3>
+        <h5 class="contact">{{user.contact}}</h5>
+      </div>
+    </div>
+
+    <ion-item>
+      <ion-label>Contact</ion-label>
+      <ion-input type="number" formControlName="contact"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email" readonly></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Currenly Employed</ion-label>
+      <ion-toggle formControlName="employment"></ion-toggle>
+    </ion-item>
+  </form>
+  <ion-button expand="block" color="secondary"(click)="update()">Save</ion-button>
+</ion-content>
