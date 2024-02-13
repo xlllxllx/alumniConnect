@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren: () => import('../student-activity/student-activity.module').then(m => m.StudentActivityPageModule)
       },
       {
+        path: 'account',
+        loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

@@ -7,6 +7,27 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
+    path: 'course-request/:coursename',
+    
+    loadChildren: () => import('./course-request/course-request.module').then( m => m.CourseRequestPageModule)
+  },
+  {
+    path: 'add-question',
+    loadChildren: () => import('./add-question/add-question.module').then( m => m.AddQuestionPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
+  },
+  {
     path: 'admin-course',
     loadChildren: () => import('./admin-course/admin-course.module').then( m => m.AdminCoursePageModule)
   },
