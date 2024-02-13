@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,6 +21,27 @@
      <ion-button expand="block" color="secondary" fill="clear" (click)="signup()">Or Create an Account</ion-button>
   </div>
   <div *ngIf="userEmail !== undefined">
+    <form [formGroup]="userProfileForm">
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input formControlName="username"></ion-input>
+        <ion-label *ngIf="userProfileForm.controls['username'].errors && updated" color="danger">Username is required</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Contact</ion-label>
+        <ion-input type="number" formControlName="contact"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input type="email" formControlName="email" readonly></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Currenly Employed</ion-label>
+        <ion-toggle formControlName="employment"></ion-toggle>
+      </ion-item>
+    </form>
     <ion-button expand="block" color="secondary"(click)="logout()">Logout</ion-button>
   </div>
 </ion-content>

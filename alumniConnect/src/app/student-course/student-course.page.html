@@ -1,6 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Courses</ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="userName === undefined">
+        <ion-button (click)="login()" type="submit">Login</ion-button>
+      </div>
+      <div *ngIf="userName !== undefined">
+        <ion-button (click)="login()" type="submit">{{userName}}</ion-button>
+        <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">

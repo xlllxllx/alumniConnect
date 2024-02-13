@@ -5,6 +5,7 @@ import { CoursesService } from '../shared/services/courses.service';
 import { LoginPage } from '../login/login.page';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
+import { UserProfile } from '../shared/models/UserProfile';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +13,8 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  userEmail: any;
+  user: UserProfile;
+  userName: string;
   courses: Courses[] = [];
   constructor(private coursesService: FirebaseProductService,
               private modalController: ModalController,
@@ -40,9 +42,12 @@ export class Tab1Page {
     // ];
       this.authService.observeAuthState(user => {
         if (user) {
-          this.userEmail = user.email;
+          this.authService.getUserProfile(user.uid).subscribe(data => {
+            this.user = data;
+            this.userName = this.user.username;
+          })
         } else {
-          this.userEmail = undefined;
+          this.userName = undefined;
         }
       });
     }

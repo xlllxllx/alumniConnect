@@ -8,7 +8,7 @@ import { UserProfile } from '../models/UserProfile';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private userRef = firebase.firestore().collection("users");
   constructor() { }
 
   observeAuthState(func: firebase.Observer<any, Error> | ((a: firebase.User | null) => any)) {
@@ -24,22 +24,41 @@ export class AuthService {
   }
 
   signup(email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password)
-    // .then(users => {
-    //   const user = users.user;
-
-    //   const db = firebase.firestore();
-    //   db.collection('users').doc(user.uid).set({
-    //     name: email,
-    //   })
-    // }).catch((error) => {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   console.error(`Error creating account: ${errorCode} - ${errorMessage}`);
-    // });
+    return firebase.auth().createUserWithEmailAndPassword(email, password).then((userCredential) => {
+      const user = userCredential.user;
+      return user;
+    });
   }
 
-  // getUserProfile(userId: string): Observable<UserProfile> {
-  //   return firebase.firestore().collection('users').doc(userId).valueChanges();
-  // }
+  addUser(u: UserProfile) : Promise<void>{
+    return this.userRef.doc(u.id).set({
+      username: u.username,
+      contact: u.contact,
+      email: u.email
+    })
+  }
+
+  getUserProfile(userId: string): Observable<any> {
+    return new Observable((observer) => {
+      this.userRef.doc(userId).get().then((doc) => {
+        let data = doc.data();
+        let u = new UserProfile(data!['username'], data!['contact'], data!['email'], doc!['id']);
+        if (data!['employment']) u.employment = data!['employment'];
+         console.log("User: ", u);
+        observer.next(u);
+      });
+    });
+  }
+
+  update(u: UserProfile) {
+    const ref = this.userRef.doc(u.id);
+
+    ref.update({
+      username: u.username,
+      contact: u.contact,
+      email: u.email,
+      employment: u.employment
+    });
+  }
+
 }
