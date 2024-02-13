@@ -20,8 +20,32 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'admin-course',
+        loadChildren: () => import('../admin-course/admin-course.module').then(m => m.AdminCoursePageModule)
+      },
+      {
+        path: 'student-course',
+        loadChildren: () => import('../student-course/student-course.module').then(m => m.StudentCoursePageModule)
+      },
+      {
+        path: 'admin-activity',
+        loadChildren: () => import('../admin-activity/admin-activity.module').then(m => m.AdminActivityPageModule)
+      },
+      {
+        path: 'admin-activity-result',
+        loadChildren: () => import('../admin-activity-result/admin-activity-result.module').then(m => m.AdminActivityResultPageModule)
+      },
+      {
+        path: 'student-activity',
+        loadChildren: () => import('../student-activity/student-activity.module').then(m => m.StudentActivityPageModule)
+      },
+      {
         path: 'account',
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
+      },
+      {
+        path: 'add-question',
+        loadChildren: () => import('../add-question/add-question.module').then(m => m.AddQuestionPageModule)
       },
       {
         path: '',

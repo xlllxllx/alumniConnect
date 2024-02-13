@@ -4,11 +4,11 @@
       Course Request
     </ion-title>
     <ion-buttons slot="end">
-      <div *ngIf="userEmail === undefined">
+      <div *ngIf="userName === undefined">
         <ion-button (click)="login()" type="submit">Login</ion-button>
       </div>
-      <div *ngIf="userEmail !== undefined">
-        <ion-button (click)="login()" type="submit">{{userEmail}}</ion-button>
+      <div *ngIf="userName !== undefined">
+        <ion-button (click)="login()" type="submit">{{userName}}</ion-button>
         <ion-button (click)="logout()" color="danger">Logout</ion-button>
       </div>
     </ion-buttons>

@@ -1,0 +1,54 @@
+ion-content ion-toolbar {
+    --background: translucent;
+}
+
+.ion-card {
+    border-radius: 10px;
+    color: #000000;
+}
+
+.image-card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.image-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.card-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 125px;
+}
+
+.delete-button {
+    position: absolute;
+    right: 10px;
+    top: 0px;
+}
+
+.card-content {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.edit-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+
+.read-button {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
