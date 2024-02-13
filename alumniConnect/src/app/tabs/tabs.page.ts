@@ -8,12 +8,15 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class TabsPage {
   isAdmin = false;
+  isStudent = false;
   constructor(private authService: AuthService) {
     this.authService.observeAuthState(user => {
       if(user && user.email == 'admin@nyp.sg') {
         this.isAdmin = true;
+        this.isStudent = false;
       } else {
         this.isAdmin = false;
+        this.isStudent = true;
       }
     })
   }

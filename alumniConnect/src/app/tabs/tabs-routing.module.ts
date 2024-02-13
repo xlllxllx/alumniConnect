@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('../account/account.module').then(m => m.AccountPageModule)
       },
       {
+        path: 'add-question',
+        loadChildren: () => import('../add-question/add-question.module').then(m => m.AddQuestionPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

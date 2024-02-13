@@ -16,7 +16,9 @@ export class SignupPage  {
               private authService: AuthService) { 
     this.signupForm = new FormGroup({
       email: new FormControl(''),
-      password: new FormControl('')
+      password: new FormControl(''),
+      username: new FormControl(''),
+      contact: new FormControl('')
     });
   }
 

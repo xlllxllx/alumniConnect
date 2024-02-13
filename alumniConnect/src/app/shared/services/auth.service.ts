@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import firebase from 'firebase';
 import 'firebase/auth';
+import { Observable } from 'rxjs';
+import { UserProfile } from '../models/UserProfile';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +24,22 @@ export class AuthService {
   }
 
   signup(email: string, password: string) {
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
+    // .then(users => {
+    //   const user = users.user;
+
+    //   const db = firebase.firestore();
+    //   db.collection('users').doc(user.uid).set({
+    //     name: email,
+    //   })
+    // }).catch((error) => {
+    //   const errorCode = error.code;
+    //   const errorMessage = error.message;
+    //   console.error(`Error creating account: ${errorCode} - ${errorMessage}`);
+    // });
   }
+
+  // getUserProfile(userId: string): Observable<UserProfile> {
+  //   return firebase.firestore().collection('users').doc(userId).valueChanges();
+  // }
 }
