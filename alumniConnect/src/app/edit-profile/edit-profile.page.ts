@@ -1,26 +1,22 @@
 import { Component } from '@angular/core';
-import { LoginPage } from '../login/login.page';
-import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
-import { SignupPage } from '../signup/signup.page';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserProfile } from '../shared/models/UserProfile';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.page.html',
-  styleUrls: ['./account.page.scss'],
+  selector: 'app-edit-profile',
+  templateUrl: './edit-profile.page.html',
+  styleUrls: ['./edit-profile.page.scss'],
 })
-export class AccountPage  {
+export class EditProfilePage  {
   userProfileForm!: FormGroup;
+  userId: string;
   userName: string;
-  userId: any;
   user: UserProfile;
-  updated: boolean = false;
 
-  constructor(private modalController: ModalController,
-              private authService: AuthService) { 
-                
+  constructor(private authService: AuthService,
+              private router: Router) { 
     this.authService.observeAuthState(user => {
       if (user) {
         this.userId = user.uid;
@@ -48,22 +44,22 @@ export class AccountPage  {
     });
   }
 
-  async login() {
-    const modal = await this.modalController.create({
-      component: LoginPage
-    });
-    return await modal.present();
-  }
+  // uploadFile(file: File, userId: string) {
+  //   const filePath = `userFiles/${userId}/${file.name}`;
+  // }
 
-  logout() {
-    this.authService.logout();
-  }
+  update() {
+    if (this.user != undefined && this.userProfileForm.valid) {
+      const user = new UserProfile(
+        this.userProfileForm.value.username,
+        this.userProfileForm.value.contact,
+        this.userProfileForm.value.email,
+      );
+      user.employment = this.userProfileForm.value.employment;
+      user.id = this.userId;
+      this.authService.update(user);
 
-  async signup() {
-    const modal = await this.modalController.create({
-      component: SignupPage
-    });
-    return await modal.present();
+      this.router.navigate(['tabs/account']);
+    }
   }
-
 }

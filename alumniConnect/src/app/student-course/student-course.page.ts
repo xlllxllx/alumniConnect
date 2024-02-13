@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Course } from '../shared/models/course';
 import { CourseService } from '../shared/services/course.service';
 import { IonSearchbar, ModalController } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { LoginPage } from '../login/login.page';
   templateUrl: './student-course.page.html',
   styleUrls: ['./student-course.page.scss'],
 })
-export class StudentCoursePage implements OnInit {
+export class StudentCoursePage  {
 
   @ViewChild('searchBar', { static: false }) searchbar: IonSearchbar;
 
@@ -34,7 +34,7 @@ export class StudentCoursePage implements OnInit {
           this.userName = this.user.username;
         })
       } else {
-        this.userName = undefined;
+        this.user = undefined;
       }
     });
   }
@@ -70,6 +70,5 @@ export class StudentCoursePage implements OnInit {
     this.authService.logout();
   }
 
-  ngOnInit() {
-  }
+  
 }
