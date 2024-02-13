@@ -18,10 +18,10 @@
       <ion-title size="large">Profile</ion-title>
     </ion-toolbar>
   </ion-header>
-  <div *ngIf="user === undefined">
-    <ion-item>
+  <div id="container" *ngIf="user === undefined">
+    <p>
       You are not logged in
-      </ion-item>
+    </p>
      <ion-button expand="block"
       type="submit" (click)=login()>
       Login

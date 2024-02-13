@@ -14,7 +14,6 @@ export class EditProfilePage  {
   userId: string;
   userName: string;
   user: UserProfile;
-  updated: boolean = false;
 
   constructor(private authService: AuthService,
               private router: Router) { 
@@ -45,8 +44,11 @@ export class EditProfilePage  {
     });
   }
 
+  // uploadFile(file: File, userId: string) {
+  //   const filePath = `userFiles/${userId}/${file.name}`;
+  // }
+
   update() {
-    this.updated = true;
     if (this.user != undefined && this.userProfileForm.valid) {
       const user = new UserProfile(
         this.userProfileForm.value.username,
@@ -56,6 +58,7 @@ export class EditProfilePage  {
       user.employment = this.userProfileForm.value.employment;
       user.id = this.userId;
       this.authService.update(user);
+
       this.router.navigate(['tabs/account']);
     }
   }
