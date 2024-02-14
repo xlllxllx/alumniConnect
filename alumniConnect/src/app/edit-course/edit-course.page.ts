@@ -23,15 +23,13 @@ export class EditCoursePage implements OnInit {
 
     // this.course = this.courseService.getCourseById(this.courseId);
     // this.courseImage = this.course!.image;
-    this.course = new Course("", "", "", "", "", "", "", "", "");
+    this.course = new Course(null, null, null, null, null, null, null, null, null);
 
     this.editCourseForm = new FormGroup({
       title: new FormControl(this.course?.title, [Validators.required]),
       subtitle: new FormControl(this.course?.subtitle, [Validators.required]),
       duration: new FormControl(this.course?.duration, [Validators.required]),
       weeklyHours: new FormControl(this.course?.weeklyHours, [Validators.required]),
-      programDateFrom: new FormControl(this.course?.programDateFrom, [Validators.required]),
-      programDateTo: new FormControl(this.course?.programDateTo, [Validators.required]),
       about: new FormControl(this.course?.about, [Validators.required]),
       instructors: new FormControl(this.course?.instructors, [Validators.required])
     })
@@ -45,8 +43,6 @@ export class EditCoursePage implements OnInit {
         this.editCourseForm.controls['subtitle'].setValue(this.course.subtitle);
         this.editCourseForm.controls['duration'].setValue(this.course.duration);
         this.editCourseForm.controls['weeklyHours'].setValue(this.course.weeklyHours);
-        this.editCourseForm.controls['programDateFrom'].setValue(this.course.programDateFrom);
-        this.editCourseForm.controls['programDateTo'].setValue(this.course.programDateTo);
         this.editCourseForm.controls['about'].setValue(this.course.about);
         this.editCourseForm.controls['instructors'].setValue(this.course.instructors);
       }

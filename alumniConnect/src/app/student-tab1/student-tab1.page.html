@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Course Request</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor="let item of courseRequests">
+      <ion-thumbnail slot="start">
+        <img [src]=item.image>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{item.title}}</h2>
+        <p>{{item.subtitle}}</p>
+        <p>Total duration is {{item.duration}} hours</p>
+      </ion-label>
+      <ion-buttons slot="end" class="edit-button">
+        <ion-button [routerLink]="['/student-course-request', item.id]">
+          <ion-icon slot="icon-only" name="chevron-forward-sharp" color="dark"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+</ion-content>

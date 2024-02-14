@@ -12,11 +12,11 @@ import 'firebase/storage';
 })
 export class StudentActivityResultPage implements OnInit {
 
-  activities: Activity[];
+  activity: Activity[] = [];
 
   constructor(private activityService: FirebaseActivityService) {
     this.activityService.getActivities().subscribe(data => {
-      this.activities = data;
+      this.activity = data;
     });
 
   }

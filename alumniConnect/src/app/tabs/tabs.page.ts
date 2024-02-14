@@ -14,9 +14,14 @@ export class TabsPage {
       if(user && user.email == 'admin@nyp.sg') {
         this.isAdmin = true;
         this.isStudent = false;
-      } else {
+      } 
+      else if(user && user.email == 'student@nyp.sg') {
         this.isAdmin = false;
         this.isStudent = true;
+      }
+      else {
+        this.isAdmin = false;
+        this.isStudent = false;
       }
     })
   }

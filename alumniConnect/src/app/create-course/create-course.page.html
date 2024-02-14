@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Create New Course</ion-title>
     <ion-buttons slot="start">
-      <ion-button color="dark" [routerLink]="['/tabs/admin-course']">
+      <ion-button color="dark" [routerLink]="['/tabs/tab1']">
         <ion-icon slot="icon-only" name="chevron-back-sharp"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -10,18 +10,12 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Create New Course</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <form [formGroup]="createCourseForm">
+  <form [formGroup]="createCourseRequestForm">
 
     <ion-item>
       <ion-label>Title</ion-label>
       <ion-input formControlName="title"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['title'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['title'].errors && submitted" color="danger">
         Please enter a valid title!
       </ion-label>
     </ion-item>
@@ -29,7 +23,7 @@
     <ion-item>
       <ion-label>Subtitle</ion-label>
       <ion-input formControlName="subtitle"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['subtitle'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['subtitle'].errors && submitted" color="danger">
         Please enter a valid subtitle!
       </ion-label>
     </ion-item>
@@ -37,7 +31,7 @@
     <ion-item>
       <ion-label>Duration</ion-label>
       <ion-input formControlName="duration"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['duration'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['duration'].errors && submitted" color="danger">
         Please enter a valid duration!
       </ion-label>
     </ion-item>
@@ -45,23 +39,23 @@
     <ion-item>
       <ion-label>Weekly Hours</ion-label>
       <ion-input formControlName="weeklyHours"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['weeklyHours'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['weeklyHours'].errors && submitted" color="danger">
         Please enter a valid weekly hours!
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Program Date From</ion-label>
-      <ion-input formControlName="programDateFrom"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['programDateFrom'].errors && submitted" color="danger">
+      <ion-datetime formControlName="programDateFrom"></ion-datetime>
+      <ion-label *ngIf="createCourseRequestForm.controls['programDateFrom'].errors && submitted" color="danger">
         Please enter a valid program date from!
       </ion-label>
     </ion-item>
 
     <ion-item>
       <ion-label>Program Date To</ion-label>
-      <ion-input formControlName="programDateTo"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['programDateTo'].errors && submitted" color="danger">
+      <ion-datetime formControlName="programDateTo"></ion-datetime>
+      <ion-label *ngIf="createCourseRequestForm.controls['programDateTo'].errors && submitted" color="danger">
         Please enter a valid program date to!
       </ion-label>
     </ion-item>
@@ -69,7 +63,7 @@
     <ion-item>
       <ion-label>About</ion-label>
       <ion-input formControlName="about"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['about'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['about'].errors && submitted" color="danger">
         Please enter a valid about!
       </ion-label>
     </ion-item>
@@ -77,12 +71,12 @@
     <ion-item>
       <ion-label>Instructors</ion-label>
       <ion-input formControlName="instructors"></ion-input>
-      <ion-label *ngIf="createCourseForm.controls['instructors'].errors && submitted" color="danger">
+      <ion-label *ngIf="createCourseRequestForm.controls['instructors'].errors && submitted" color="danger">
         Please enter a valid instructors!
       </ion-label>
     </ion-item>
 
-    <ion-button size="default" color="dark" type="submit" (click)=add()>Create</ion-button>
+    <ion-button size="default" color="dark" type="submit" (click)=add() class="create-course-button" [routerLink]="['/tabs/tab1']">Create</ion-button>
 
   </form>
 

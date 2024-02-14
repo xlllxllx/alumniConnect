@@ -42,4 +42,5 @@ export class AuthService {
   // getUserProfile(userId: string): Observable<UserProfile> {
   //   return firebase.firestore().collection('users').doc(userId).valueChanges();
   // }
+  
 }

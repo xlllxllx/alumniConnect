@@ -5,6 +5,7 @@ import { CourseService } from '../shared/services/course.service';
 import { Course } from '../shared/models/course';
 
 import { FirebaseCourseService } from '../shared/services/firebase-course.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-student-course-details',
@@ -25,24 +26,24 @@ export class StudentCourseDetailsPage implements OnInit {
   about: string = "";
   instructors: string = "";
 
-  constructor(private route: ActivatedRoute, private router: Router, private courseService: FirebaseCourseService, private toastController: ToastController) {
+  constructor(private route: ActivatedRoute, private router: Router, private courseService: FirebaseCourseService, private toastController: ToastController, private authService: AuthService) {
     this.courseId = this.route.snapshot.params['id'];
 
     this.courseService.getCourseById(this.courseId)
-    .subscribe(data => {
-      this.course = data;
-      if (this.course) {
-        this.courseImage = this.course.image;
-        this.title = this.course.title;
-        this.subtitle = this.course.subtitle;
-        this.duration = this.course.duration;
-        this.weeklyHours = this.course.weeklyHours;
-        this.programDateFrom = this.course.programDateFrom;
-        this.programDateTo = this.course.programDateTo;
-        this.about = this.course.about;
-        this.instructors = this.course.instructors;
-      }
-    });
+      .subscribe(data => {
+        this.course = data;
+        if (this.course) {
+          this.courseImage = this.course.image;
+          this.title = this.course.title;
+          this.subtitle = this.course.subtitle;
+          this.duration = this.course.duration;
+          this.weeklyHours = this.course.weeklyHours;
+          this.programDateFrom = this.course.programDateFrom.toDate().toISOString();
+          this.programDateTo = this.course.programDateTo.toDate().toISOString();
+          this.about = this.course.about;
+          this.instructors = this.course.instructors;
+        }
+      });
   }
 
   ngOnInit() {

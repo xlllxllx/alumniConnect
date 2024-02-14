@@ -1,17 +1,20 @@
+import firebase from 'firebase/app';
+import 'firebase/firestore';
+
 export class Course {
     title: string;
     subtitle: string;
     duration: string;
     weeklyHours: string;
-    programDateFrom: string;
-    programDateTo: string;
+    programDateFrom: firebase.firestore.Timestamp;
+    programDateTo: firebase.firestore.Timestamp;
     about: string;
     instructors: string;
     image: string;
     imagePath!: string;
     id: string;
 
-    constructor(title: string, subtitle: string, duration: string, weeklyHours: string, programDateFrom: string, programDateTo: string, about: string, instructors: string, image: string, id?: string) {
+    constructor(title: string, subtitle: string, duration: string, weeklyHours: string, programDateFrom: firebase.firestore.Timestamp, programDateTo: firebase.firestore.Timestamp, about: string, instructors: string, image: string, id?: string) {
         this.title = title;
         this.subtitle = subtitle;
         this.duration = duration;

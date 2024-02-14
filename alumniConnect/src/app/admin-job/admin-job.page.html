@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Job Board
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id ="container" *ngIf="jobs.length == 0">
+    <strong>No jobs available</strong>
+  </div>
+
+  <ion-list>
+        <ion-item *ngFor="let item of jobs">
+            <ion-thumbnail slot="start">
+              <img [src]=item.image>
+            </ion-thumbnail>
+          <ion-label>
+            <h2>{{item.jobname}}</h2>
+             <p>Salary: {{item.salary | currency}} /Annual</p>
+             <p>Job Description: {{item.description}}</p>
+             <!-- <ion-button color="secondary">
+              Apply For Job
+              </ion-button> -->
+          </ion-label>
+        </ion-item>
+      </ion-list>
+</ion-content>

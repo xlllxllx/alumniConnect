@@ -6,9 +6,19 @@
       <ion-label>Course Request</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" href="/tabs/tab2">
-      <ion-icon name="search-outline"></ion-icon>
-      <ion-label>Find Jobs</ion-label>
+    <ion-tab-button tab="student-tab1" href="/tabs/student-tab1" *ngIf="isStudent">
+      <ion-icon name="apps-outline"></ion-icon>
+      <ion-label>Course Request</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab2" href="/tabs/tab2" *ngIf="isStudent">
+      <ion-icon name="briefcase-sharp"></ion-icon>
+      <ion-label>Jobs</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="admin-job" href="/tabs/admin-job" *ngIf="isAdmin">
+      <ion-icon name="briefcase-sharp"></ion-icon>
+      <ion-label>Jobs</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="tab3" href="/tabs/tab3" *ngIf="isAdmin">
@@ -16,38 +26,28 @@
       <ion-label>Course Feedback</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="add-question" href="/tabs/add-question" *ngIf="isStudent">
-      <ion-icon aria-hidden="true" name="Person"></ion-icon>
-      <ion-label>Course Feedback</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="admin-course" href="/tabs/admin-course">
+    <ion-tab-button tab="admin-course" href="/tabs/admin-course" *ngIf="isAdmin">
       <ion-icon aria-hidden="true" name="book-sharp"></ion-icon>
-      <ion-label>Admin Course</ion-label>
+      <ion-label>Course</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="student-course" href="/tabs/student-course">
+    <ion-tab-button tab="student-course" href="/tabs/student-course" *ngIf="isStudent">
       <ion-icon aria-hidden="true" name="school-sharp"></ion-icon>
-      <ion-label>Student Course</ion-label>
+      <ion-label>Course</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="admin-activity" href="/tabs/admin-activity">
-      <ion-icon aria-hidden="true" name="game-controller-sharp"></ion-icon>
-      <ion-label>Admin Activity</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="admin-activity-result" href="/tabs/admin-activity-result">
+    <ion-tab-button tab="admin-activity-result" href="/tabs/admin-activity-result" *ngIf="isAdmin">
       <ion-icon aria-hidden="true" name="stats-chart-sharp"></ion-icon>
-      <ion-label>Admin Activity Result</ion-label>
+      <ion-label>Voting Result</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="student-activity" href="/tabs/student-activity">
-      <ion-icon aria-hidden="true" name="planet-sharp"></ion-icon>
-      <ion-label>Student Activity</ion-label>
+    <ion-tab-button tab="student-activity" href="/tabs/student-activity" *ngIf="isStudent">
+      <ion-icon aria-hidden="true" name="podium-sharp"></ion-icon>
+      <ion-label>Voting</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="account" href="/tabs/account">
-      <ion-icon aria-hidden="true" name="home"></ion-icon>
+      <ion-icon aria-hidden="true" name="person-circle-sharp"></ion-icon>
       <ion-label>Account</ion-label>
     </ion-tab-button>
   </ion-tab-bar>

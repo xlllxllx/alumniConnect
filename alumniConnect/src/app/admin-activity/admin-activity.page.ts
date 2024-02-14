@@ -14,12 +14,12 @@ export class AdminActivityPage implements OnInit {
   activities: Activity[];
   selectedOption: string = "";
   comments: string = "";
+  eventsList: any[];
 
   constructor(private activityService: FirebaseActivityService) {
     this.activityService.getActivities().subscribe(data => {
       this.activities = data;
     });
-
   }
 
   ngOnInit() {

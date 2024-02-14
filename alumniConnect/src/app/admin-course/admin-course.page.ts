@@ -14,10 +14,18 @@ export class AdminCoursePage implements OnInit {
   @ViewChild('searchBar', { static: false }) searchbar: IonSearchbar;
  
   courses: Course[] = [];
+  courseList: any[];
 
   constructor(private courseService: FirebaseCourseService) {
-    this.courseService.getCourses().subscribe(data => {
-      this.courses = data;
+    this.courseService.getCourses().subscribe((events) => {
+      // Filter events based on today's date
+      this.courseList = events.filter((event) => {
+        const programDateFrom = event.programDateFrom.toDate();
+        const programDateTo = event.programDateTo.toDate();
+        const today = new Date();
+
+        return today >= programDateFrom && today <= programDateTo;
+      });
     });
   }
 

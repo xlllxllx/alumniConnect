@@ -48,15 +48,23 @@ const routes: Routes = [
         loadChildren: () => import('../add-question/add-question.module').then(m => m.AddQuestionPageModule)
       },
       {
+        path: 'admin-job',
+        loadChildren: () => import('../admin-job/admin-job.module').then(m => m.AdminJobPageModule)
+      },
+      {
+        path: 'student-tab1',
+        loadChildren: () => import('../student-tab1/student-tab1.module').then(m => m.StudentTab1PageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/account',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/account',
     pathMatch: 'full'
   }
 ];

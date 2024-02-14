@@ -7,8 +7,7 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'course-request/:coursename',
-    
+    path: 'course-request/:id',
     loadChildren: () => import('./course-request/course-request.module').then( m => m.CourseRequestPageModule)
   },
   {
@@ -72,8 +71,20 @@ const routes: Routes = [
     loadChildren: () => import('./student-activity-result/student-activity-result.module').then( m => m.StudentActivityResultPageModule)
   },
   {
-    path: 'admin-activity-result',
-    loadChildren: () => import('./admin-activity-result/admin-activity-result.module').then( m => m.AdminActivityResultPageModule)
+    path: 'admin-job',
+    loadChildren: () => import('./admin-job/admin-job.module').then( m => m.AdminJobPageModule)
+  },
+  {
+    path: 'course-request/:id',
+    loadChildren: () => import('./course-request/course-request.module').then( m => m.CourseRequestPageModule)
+  },
+  {
+    path: 'student-tab1',
+    loadChildren: () => import('./student-tab1/student-tab1.module').then( m => m.StudentTab1PageModule)
+  },
+  {
+    path: 'student-course-request/:id',
+    loadChildren: () => import('./student-course-request/student-course-request.module').then( m => m.StudentCourseRequestPageModule)
   }
 ];
 @NgModule({

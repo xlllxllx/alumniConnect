@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Courses } from '../shared/models/Courses';
-import { FirebaseProductService } from '../shared/services/firebase-product.service';
-import { CoursesService } from '../shared/services/courses.service';
+// import { Courses } from '../shared/models/Courses';
+// import { FirebaseProductService } from '../shared/services/firebase-product.service';
+// import { CoursesService } from '../shared/services/courses.service';
 import { LoginPage } from '../login/login.page';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
+import { courseRequest } from '../shared/models/courseRequest';
+import { FirebaseCourseRequestService } from '../shared/services/firebase-course-request.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,16 +14,13 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  userEmail: any;
-  courses: Courses[] = [];
-  constructor(private coursesService: FirebaseProductService,
-              private modalController: ModalController,
-              private authService: AuthService) {
+  courseRequests: courseRequest[] = [];
+  constructor(private courseRequestsService: FirebaseCourseRequestService) {
     
     // this.courses = this.coursesService.getCourses();
-    this.coursesService.getCourses()
+    this.courseRequestsService.getCourseRequests()
     .subscribe(data => {
-      this.courses = data;
+      this.courseRequests = data;
     });
   // this.coursesService.getCourses().subscribe((data) => {
   // this.courses = data;});
@@ -38,23 +37,23 @@ export class Tab1Page {
     //   new Courses('M.Com', 2, 'assets/images/course1.jpeg', '10'),
 
     // ];
-      this.authService.observeAuthState(user => {
-        if (user) {
-          this.userEmail = user.email;
-        } else {
-          this.userEmail = undefined;
-        }
-      });
+      // this.authService.observeAuthState(user => {
+      //   if (user) {
+      //     this.userEmail = user.email;
+      //   } else {
+      //     this.userEmail = undefined;
+      //   }
+      // });
     }
 
-    async login() {
-      const modal = await this.modalController.create({
-        component: LoginPage
-      });
-      return await modal.present();
-    }
+    // async login() {
+    //   const modal = await this.modalController.create({
+    //     component: LoginPage
+    //   });
+    //   return await modal.present();
+    // }
 
-    logout() {
-      this.authService.logout();
-    }
+    // logout() {
+    //   this.authService.logout();
+    // }
 }

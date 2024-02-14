@@ -1,48 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Course Request
-    </ion-title>
+    <ion-title>Course Request</ion-title>
     <ion-buttons slot="end">
-      <div *ngIf="userEmail === undefined">
-        <ion-button (click)="login()" type="submit">Login</ion-button>
-      </div>
-      <div *ngIf="userEmail !== undefined">
-        <ion-button (click)="login()" type="submit">{{userEmail}}</ion-button>
-        <ion-button (click)="logout()" color="danger">Logout</ion-button>
-      </div>
+      <ion-button color="dark" [routerLink]="['/create-course']">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Course Request</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>There are no products</strong>
+  <div id="container" *ngIf="courseRequests.length == 0">
+    <strong>There are no requests</strong>
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let item of courses">
+    <ion-item *ngFor="let item of courseRequests">
       <ion-thumbnail slot="start">
         <img [src]=item.image>
-        </ion-thumbnail>
+      </ion-thumbnail>
       <ion-label>
         <h2>{{item.title}}</h2>
         <p>{{item.subtitle}}</p>
         <p>Total duration is {{item.duration}} hours</p>
-        
-
+        <p>{{item.count}}</p>
       </ion-label>
-      <ion-buttons slot="end">
-        <ion-button color="primary" [routerLink]="['/course-request',item.title]">
-        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      <ion-buttons slot="end" class="edit-button">
+        <ion-button [routerLink]="['/course-request', item.id]">
+          <ion-icon slot="icon-only" name="chevron-forward-sharp" color="dark"></ion-icon>
         </ion-button>
-        </ion-buttons> 
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
