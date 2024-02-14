@@ -6,7 +6,7 @@
         <ion-button (click)="login()" type="submit">Login</ion-button>
       </div>
       <div *ngIf="user !== undefined">
-        <ion-button (click)="login()" type="submit">{{userName}}</ion-button>
+        <ion-button type="submit" [routerLink]="['/tabs/account']">{{userName}}</ion-button>
         <ion-button (click)="logout()" color="danger">Logout</ion-button>
       </div>
     </ion-buttons>

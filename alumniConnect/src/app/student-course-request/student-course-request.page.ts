@@ -5,6 +5,7 @@ import { FirebaseCourseRequestService } from '../shared/services/firebase-course
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/storage';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-student-course-request',
@@ -26,9 +27,8 @@ export class StudentCourseRequestPage implements OnInit {
   formattedProgramDateTo: string = "";
   about: string = "";
   instructors: string = "";
-  count: number = 0;
 
-  constructor(private route: ActivatedRoute, private router: Router, private courseRequestService: FirebaseCourseRequestService) {
+  constructor(private route: ActivatedRoute, private router: Router, private courseRequestService: FirebaseCourseRequestService, private toastController: ToastController) {
     this.courseRequestId = this.route.snapshot.params['id'];
 
     this.courseRequestService.getCourseRequestById(this.courseRequestId)
@@ -40,11 +40,12 @@ export class StudentCourseRequestPage implements OnInit {
           this.subtitle = this.courseRequest.subtitle;
           this.duration = this.courseRequest.duration;
           this.weeklyHours = this.courseRequest.weeklyHours;
-          this.programDateFrom = this.courseRequest.programDateFrom;
-          this.programDateTo = this.courseRequest.programDateTo;
+          this.programDateFrom = this.courseRequest.programDateFrom; // Assign the Timestamp object directly
+          this.programDateTo = this.courseRequest.programDateTo; // Assign the Timestamp object directly
+          this.formattedProgramDateFrom = new Date(this.programDateFrom.toDate()).toLocaleDateString("en-us");
+          this.formattedProgramDateTo = new Date(this.programDateTo.toDate()).toLocaleDateString("en-us");
           this.about = this.courseRequest.about;
           this.instructors = this.courseRequest.instructors;
-          this.count = this.courseRequest.count;
         }
       });
   }
@@ -56,7 +57,14 @@ export class StudentCourseRequestPage implements OnInit {
     const courseRequestsRef = firebase.firestore().collection('course-request').doc(this.courseRequestId);
 
     courseRequestsRef.update({ count: firebase.firestore.FieldValue.increment(1) })
-      .then(() => {
+      .then(async () => {
+        const toast = await this.toastController.create({
+          message: 'You have successfully requested for this course.',
+          duration: 2000,
+          position: 'middle',
+          color: 'success'
+        });
+        toast.present();
         console.log('Course requested successfully!');
         this.router.navigate(['/tabs/student-tab1']);
       })

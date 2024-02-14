@@ -28,6 +28,7 @@ export class LoginPage  {
     ).catch(
       error => this.loginError = error.message
     );
+    
   }
 
   

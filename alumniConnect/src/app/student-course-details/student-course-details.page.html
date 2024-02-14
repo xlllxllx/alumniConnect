@@ -62,7 +62,7 @@
   <ion-item>
     <ion-label>
       <h3>About</h3>
-      <ion-textarea>{{this.course?.about}}</ion-textarea>
+      <p>{{this.course?.about}}</p>
     </ion-label>
   </ion-item>
 
@@ -73,10 +73,10 @@
     </ion-label>
   </ion-item>
 
-  <!-- <ion-toolbar> -->
+  <ion-toolbar>
     <ion-button size="small" (click)=enroll() [routerLink]="['/tabs/student-course']" class="enroll-button">
       Enroll
     </ion-button>
-  <!-- </ion-toolbar> -->
+  </ion-toolbar>
 
 </ion-content>

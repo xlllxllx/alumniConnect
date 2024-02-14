@@ -8,7 +8,7 @@
         <ion-button (click)="login()" type="submit">Login</ion-button>
       </div>
       <div *ngIf="userName !== undefined">
-        <ion-button (click)="login()" type="submit">{{userName}}</ion-button>
+        <ion-button type="submit" [routerLink]="['/tabs/account']">{{userName}}</ion-button>
         <ion-button (click)="logout()" color="danger">Logout</ion-button>
       </div>
     </ion-buttons>
@@ -16,11 +16,8 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div id ="container">
-    <strong>There are no products</strong>
-  </div>
   <ion-list>
-    <ion-item *ngFor="let item of question">
+    <ion-item *ngFor="let item of feedback">
       
       <ion-label>
         
@@ -30,11 +27,11 @@
         <!-- <p>Total score is {{item.score}}</p> -->
   
       </ion-label>
-      <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
         <ion-button color="primary" [routerLink]="['/add-question']">
         <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
         </ion-button>
-        </ion-buttons> 
+        </ion-buttons>  -->
     </ion-item>
   </ion-list>
 </ion-content>

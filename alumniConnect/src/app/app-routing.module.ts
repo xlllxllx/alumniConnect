@@ -59,10 +59,6 @@ const routes: Routes = [
     loadChildren: () => import('./student-activity/student-activity.module').then( m => m.StudentActivityPageModule)
   },
   {
-    path: 'add-activity',
-    loadChildren: () => import('./add-activity/add-activity.module').then( m => m.AddActivityPageModule)
-  },
-  {
     path: 'admin-activity-result',
     loadChildren: () => import('./admin-activity-result/admin-activity-result.module').then( m => m.AdminActivityResultPageModule)
   },

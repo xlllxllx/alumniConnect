@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Courses } from '../models/Courses';
-import { Questions } from '../models/Questions';
+import { Feedback } from '../models/Feedback';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
   courses: Courses[] = [];
-  questions: Questions[] = [];
+  questions: Feedback[] = [];
 
   constructor() {
     this.courses = [
@@ -30,7 +30,7 @@ export class CoursesService {
   getCourseById(id: string): Courses |undefined {
     return this.courses.find(item => item.id == id);
     }
-  add(q:Questions){
+  add(q:Feedback){
     this.questions.push(q);
   }
 }
