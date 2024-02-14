@@ -42,7 +42,6 @@ export class AddQuestionPage implements OnInit {
     question.category = this.addQuestionForm.value.category;
     question.description = this.addQuestionForm.value.description;
     question.question = this.addQuestionForm.value.question;
-    question.score = this.addQuestionForm.value.score;
     this.coursesService.add(question);
    
     this.router.navigate(['tabs/tab3']);
