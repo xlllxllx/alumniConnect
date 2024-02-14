@@ -74,7 +74,8 @@ const routes: Routes = [
   {
     path: 'admin-activity-result',
     loadChildren: () => import('./admin-activity-result/admin-activity-result.module').then( m => m.AdminActivityResultPageModule)
-  },  {
+  },
+  {
     path: 'edit-profile',
     loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }

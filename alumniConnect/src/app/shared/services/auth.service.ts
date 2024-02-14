@@ -42,7 +42,7 @@ export class AuthService {
     return new Observable((observer) => {
       this.userRef.doc(userId).get().then((doc) => {
         let data = doc.data();
-        let u = new UserProfile(data!['username'], data!['contact'], data!['email'], doc!['id']);
+        let u = new UserProfile(data!['username'], data!['contact'], data!['email'], data!['employment'], doc!['id']);
         if (data!['employment']) u.employment = data!['employment'];
          console.log("User: ", u);
         observer.next(u);
