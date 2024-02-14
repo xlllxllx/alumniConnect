@@ -12,19 +12,26 @@ import { LoginPage } from '../login/login.page';
   templateUrl: './student-course.page.html',
   styleUrls: ['./student-course.page.scss'],
 })
-export class StudentCoursePage  {
+export class StudentCoursePage {
 
   @ViewChild('searchBar', { static: false }) searchbar: IonSearchbar;
 
   courses: Course[] = [];
   user: UserProfile;
   userName: string;
+  courseList: any[];
 
   constructor(private courseService: FirebaseCourseService,
-              private modalController: ModalController,
-              private authService: AuthService) {
-    this.courseService.getCourses().subscribe(data => {
-        this.courses = data;
+    private modalController: ModalController,
+    private authService: AuthService) {
+    this.courseService.getCourses().subscribe((events) => {
+      // Filter events based on today's date
+      this.courseList = events.filter((event) => {
+        const programDateFrom = event.programDateFrom.toDate();
+        const today = new Date();
+
+        return today < programDateFrom;
+      });
     });
 
     this.authService.observeAuthState(user => {
@@ -70,5 +77,5 @@ export class StudentCoursePage  {
     this.authService.logout();
   }
 
-  
+
 }

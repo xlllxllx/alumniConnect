@@ -6,6 +6,8 @@ import { Course } from '../shared/models/course';
 
 import { FirebaseCourseService } from '../shared/services/firebase-course.service';
 import { AuthService } from '../shared/services/auth.service';
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-student-course-details',
@@ -21,8 +23,10 @@ export class StudentCourseDetailsPage implements OnInit {
   subtitle: string = "";
   duration: string = "";
   weeklyHours: string = "";
-  programDateFrom: string = "";
-  programDateTo: string = "";
+  programDateFrom: firebase.firestore.Timestamp;
+  programDateTo: firebase.firestore.Timestamp;
+  formattedProgramDateFrom: string = "";
+  formattedProgramDateTo: string = "";
   about: string = "";
   instructors: string = "";
 
@@ -38,8 +42,10 @@ export class StudentCourseDetailsPage implements OnInit {
           this.subtitle = this.course.subtitle;
           this.duration = this.course.duration;
           this.weeklyHours = this.course.weeklyHours;
-          this.programDateFrom = this.course.programDateFrom.toDate().toISOString();
-          this.programDateTo = this.course.programDateTo.toDate().toISOString();
+          this.programDateFrom = this.course.programDateFrom; // Assign the Timestamp object directly
+          this.programDateTo = this.course.programDateTo; // Assign the Timestamp object directly
+          this.formattedProgramDateFrom = new Date(this.programDateFrom.toDate()).toLocaleDateString("en-us");
+          this.formattedProgramDateTo = new Date(this.programDateTo.toDate()).toLocaleDateString("en-us");
           this.about = this.course.about;
           this.instructors = this.course.instructors;
         }

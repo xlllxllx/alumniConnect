@@ -17,15 +17,18 @@ export class AdminCoursePage implements OnInit {
   courseList: any[];
 
   constructor(private courseService: FirebaseCourseService) {
-    this.courseService.getCourses().subscribe((events) => {
-      // Filter events based on today's date
-      this.courseList = events.filter((event) => {
-        const programDateFrom = event.programDateFrom.toDate();
-        const programDateTo = event.programDateTo.toDate();
-        const today = new Date();
+    // this.courseService.getCourses().subscribe((events) => {
+    //   // Filter events based on today's date
+    //   this.courseList = events.filter((event) => {
+    //     const programDateFrom = event.programDateFrom.toDate();
+    //     const programDateTo = event.programDateTo.toDate();
+    //     const today = new Date();
 
-        return today >= programDateFrom && today <= programDateTo;
-      });
+    //     return today >= programDateFrom && today <= programDateTo;
+    //   });
+    // });
+    this.courseService.getCourses().subscribe(allCourses => {
+      this.courses = allCourses;
     });
   }
 

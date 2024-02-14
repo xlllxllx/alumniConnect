@@ -6,7 +6,6 @@ import { Course } from '../shared/models/course';
 import { FirebaseCourseService } from '../shared/services/firebase-course.service';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-course-details',
