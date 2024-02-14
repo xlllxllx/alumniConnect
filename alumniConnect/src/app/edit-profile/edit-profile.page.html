@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Edit Profile</ion-title>
     <ion-buttons slot="start">
-      <ion-button color="dark" [routerLink]="['/account']">
+      <ion-button color="dark" [routerLink]="['/tabs/account']">
         <ion-icon slot="icon-only" name="chevron-back-sharp"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -23,15 +23,15 @@
     </div>
   </div> 
   <form [formGroup]="userProfileForm">
-    <div class="card-body">
-      <div class="user-meta ion-text-center">
-        <h3 class="name">{{userName}}</h3>
-      </div>
-    </div>
-
+    <ion-item>
+      <ion-label>Username</ion-label>
+      <ion-input formControlName="username"></ion-input>
+      <ion-label *ngIf="userProfileForm.controls['username'].errors" color="danger"></ion-label>
+    </ion-item>
     <ion-item>
       <ion-label>Contact</ion-label>
       <ion-input type="number" formControlName="contact"></ion-input>
+      <ion-label *ngIf="userProfileForm.controls['contact'].errors" color="danger"></ion-label>
     </ion-item>
 
     <ion-item>
@@ -42,6 +42,6 @@
       <ion-label>Currenly Employed</ion-label>
       <ion-toggle formControlName="employment"></ion-toggle>
     </ion-item>
+    <ion-button type="submit" expand="block" color="secondary"(click)="update()">Save</ion-button>
   </form>
-  <ion-button expand="block" color="secondary"(click)="update()">Save</ion-button>
 </ion-content>

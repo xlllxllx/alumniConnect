@@ -36,7 +36,7 @@
         </div>
       </div>
     </div> 
-    <form [formGroup]="userProfileForm">
+    <div>
       <div class="card-body">
         <div class="user-meta ion-text-center">
           <h3 class="name">{{userName}}</h3>
@@ -61,7 +61,7 @@
           <ion-text>No</ion-text>
         </div>
       </ion-item>
-    </form>
-    <ion-button expand="block" color="secondary" [routerLink]="['/edit-profile']">Edit</ion-button>
+      <ion-button expand="block" color="dark" [routerLink]="['/edit-profile']">Edit</ion-button>
+    </div>
   </div>
 </ion-content>
