@@ -3,24 +3,36 @@ import { LoginPage } from '../login/login.page';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
 import { SignupPage } from '../signup/signup.page';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserProfile } from '../shared/models/UserProfile';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account',
   templateUrl: './account.page.html',
   styleUrls: ['./account.page.scss'],
 })
-export class AccountPage  {
-  userEmail: any;
+export class AccountPage {
+  userName: string;
+  userId: any;
+  user: UserProfile;
+  updated: boolean = false;
 
   constructor(private modalController: ModalController,
+              private router: Router,
               private authService: AuthService) { 
+                
     this.authService.observeAuthState(user => {
       if (user) {
-        this.userEmail = user.email;
+        this.userId = user.uid;
+        this.authService.getUserProfile(this.userId).subscribe(data => {
+          this.user = data;
+          this.userName = this.user.username;
+        });
       } else {
-        this.userEmail = undefined;
+        this.user = undefined;
       }
-    })
+    });
   }
 
   async login() {
@@ -40,6 +52,7 @@ export class AccountPage  {
     });
     return await modal.present();
   }
+
 
 
 }

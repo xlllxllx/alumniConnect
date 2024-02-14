@@ -1,21 +1,67 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Account</ion-title>
+    <ion-buttons slot="end">
+      <div *ngIf="user === undefined">
+        <ion-button (click)="login()" type="submit">Login</ion-button>
+      </div>
+      <div *ngIf="user">
+        <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      </div>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div *ngIf="userEmail === undefined">
-    <ion-item>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Profile</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container" *ngIf="user === undefined">
+    <p>
       You are not logged in
-      </ion-item>
+    </p>
      <ion-button expand="block"
       type="submit" (click)=login()>
       Login
      </ion-button>
      <ion-button expand="block" color="secondary" fill="clear" (click)="signup()">Or Create an Account</ion-button>
   </div>
-  <div *ngIf="userEmail !== undefined">
-    <ion-button expand="block" color="secondary"(click)="logout()">Logout</ion-button>
+  <div *ngIf="user">
+    <div class="card">
+      <div class="header">
+        <div class="avatar">
+          <img src="../../assets/icon/avatar.jpeg" alt="avatar">
+        </div>
+      </div>
+    </div> 
+    <div>
+      <div class="card-body">
+        <div class="user-meta ion-text-center">
+          <h3 class="name">{{userName}}</h3>
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label>Contact</ion-label>
+        <ion-text>{{user.contact}}</ion-text>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-text>{{user.email}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label>Currenly Employed</ion-label>
+        <div *ngIf="user.employment">
+          <ion-text>Yes</ion-text>
+        </div>
+        <div *ngIf="!user.employment">
+          <ion-text>No</ion-text>
+        </div>
+      </ion-item>
+      <ion-button expand="block" color="dark" [routerLink]="['/edit-profile']">Edit</ion-button>
+    </div>
   </div>
 </ion-content>

@@ -85,7 +85,12 @@ const routes: Routes = [
   {
     path: 'student-course-request/:id',
     loadChildren: () => import('./student-course-request/student-course-request.module').then( m => m.StudentCourseRequestPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }
+
 ];
 @NgModule({
   imports: [

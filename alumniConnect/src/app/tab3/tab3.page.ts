@@ -3,6 +3,7 @@ import { Questions } from '../shared/models/Questions';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from '../shared/services/auth.service';
 import { LoginPage } from '../login/login.page';
+import { UserProfile } from '../shared/models/UserProfile';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +11,8 @@ import { LoginPage } from '../login/login.page';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  userEmail: any;
+  user: UserProfile;
+  userName: string;
   question: Questions[] = [];
   
   constructor(private modalController: ModalController,
@@ -25,9 +27,12 @@ export class Tab3Page {
 
     this.authService.observeAuthState(user => {
       if (user) {
-        this.userEmail = user.email;
+        this.authService.getUserProfile(user.uid).subscribe(data => {
+          this.user = data;
+          this.userName = this.user.username;
+        })
       } else {
-        this.userEmail = undefined;
+        this.userName = undefined;
       }
     });
   }
